@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <title>Age Calculator</title>
+</head>
+<body>
+  <h1>Age Calculator</h1>
+
+  <label for="dobYear">Year of Birth:</label>
+  <input type="number" id="dobYear" placeholder="Enter year">
+
+  <label for="dobMonth">Month of Birth:</label>
+  <input type="number" id="dobMonth" placeholder="Enter month">
+
+  <label for="dobDay">Day of Birth:</label>
+  <input type="number" id="dobDay" placeholder="Enter day">
+
+  <button onclick="calculateAge()">Calculate Age</button>
+  <button onclick="resetForm()">Reset</button>
+
+  <p id="result"></p>
+
+  <script>
+    function calculateAge() {
+      var dobYear = document.getElementById('dobYear').value;
+      var dobMonth = document.getElementById('dobMonth').value;
+      var dobDay = document.getElementById('dobDay').value;
+
+      if (dobYear && dobMonth && dobDay) {
+        var dob = new Date(dobYear, dobMonth - 1, dobDay);
+        var today = new Date();
+        var ageInDays = Math.floor((today - dob) / (24 * 60 * 60 * 1000));
+        
+        document.getElementById('result').innerHTML = 'Your age is: ' + ageInDays + ' days.';
+      } else {
+        alert('Please enter valid values for year, month, and day of birth.');
+      }
+    }
+
+    function resetForm() {
+      document.getElementById('dobYear').value = '';
+      document.getElementById('dobMonth').value = '';
+      document.getElementById('dobDay').value = '';
+      document.getElementById('result').innerHTML = '';
+    }
+  </script>
+</body>
+</html>
